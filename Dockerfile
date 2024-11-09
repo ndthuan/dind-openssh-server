@@ -7,5 +7,7 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-VOLUME [ "/Users", "/home", "/server" ]
+
+VOLUME [ "/Users", "/home", "/server", "/var/lib/docker" ]
+
 EXPOSE 22

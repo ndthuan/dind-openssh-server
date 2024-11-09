@@ -7,10 +7,11 @@ if [ -z "${PUBLIC_KEY:-}" -a -z "${PUBLIC_KEY_URLS:-}" ]; then
     exit 1
 fi
 
+user_id=${USER_ID:-1000}
 username=${USERNAME:-dev}
 
 if ! getent passwd ${username} > /dev/null; then
-    adduser -D -u ${USER_ID:-1000} -g ${GROUP_ID:-1000} ${username}
+    adduser -D -u $user_id -g ${GROUP_ID:-1000} ${username}
     addgroup ${username} docker
     addgroup ${username} wheel
     passwd -d ${username}
@@ -18,6 +19,12 @@ if ! getent passwd ${username} > /dev/null; then
     if ! grep -q '^%wheel ALL=(ALL) NOPASSWD: ALL' /etc/sudoers; then
         echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
     fi
+fi
+
+actual_user_id=$(id -u ${username})
+if [ "${user_id}" != "${actual_user_idd}" ]; then
+    usermod -u ${user_id} ${username}
+    echo "Changed user id of username ${username} to ${user_id}"
 fi
 
 for dir in /server/config /server/keys; do
