@@ -21,6 +21,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract short SHA
+        id: vars
+        run: echo "GITHUB_SHA_SHORT=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
@@ -28,5 +32,5 @@ jobs:
           push: true
           tags: |
             ndthuan/dind-openssh-server:latest
-            ndthuan/dind-openssh-server:docker-27.3.1
+            ndthuan/dind-openssh-server:docker-27.3.1-${{ env.GITHUB_SHA_SHORT }}
           platforms: linux/amd64,linux/arm64
