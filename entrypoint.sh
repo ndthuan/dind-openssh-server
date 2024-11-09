@@ -22,7 +22,7 @@ if ! getent passwd ${username} > /dev/null; then
 fi
 
 actual_user_id=$(id -u ${username})
-if [ "${user_id}" != "${actual_user_idd}" ]; then
+if [ "${user_id}" != "${actual_user_id}" ]; then
     usermod -u ${user_id} ${username}
     echo "Changed user id of username ${username} to ${user_id}"
 fi

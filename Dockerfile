@@ -1,4 +1,4 @@
-FROM docker.io/docker:dind
+FROM docker.io/docker:27.3.1-dind
 
 RUN apk update && apk add --no-cache docker-cli rsync vim screen openssh curl sudo sed shadow
 

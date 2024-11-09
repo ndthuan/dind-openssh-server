@@ -26,5 +26,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ndthuan/dind-openssh-server:latest
+          tags: |
+            ndthuan/dind-openssh-server:latest
+            ndthuan/dind-openssh-server:docker-27.3.1
           platforms: linux/amd64,linux/arm64
