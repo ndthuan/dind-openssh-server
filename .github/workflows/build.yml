@@ -28,5 +28,5 @@ jobs:
           push: true
           tags: |
             ndthuan/dind-openssh-server:latest
-            ndthuan/dind-openssh-server:docker-27.3.1-build-${GITHUB_RUN_NUMBER}
+            ndthuan/dind-openssh-server:docker-27.3.1-build-${{ github.run_number }}
           platforms: linux/amd64,linux/arm64
