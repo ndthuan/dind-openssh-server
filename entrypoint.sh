@@ -11,7 +11,7 @@ user_id=${USER_ID:-1000}
 username=${USERNAME:-dev}
 
 if ! getent passwd ${username} > /dev/null; then
-    adduser -D -u $user_id -g ${GROUP_ID:-1000} ${username}
+    adduser -D -u $user_id -g ${GROUP_ID:-1000} -s /bin/bash ${username}
     addgroup ${username} docker
     addgroup ${username} wheel
     passwd -d ${username}
